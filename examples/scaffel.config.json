@@ -1,0 +1,105 @@
+{
+  "product": {
+    "name": "My SaaS Application",
+    "description": "A modern SaaS platform for managing teams and projects",
+    "type": "saas",
+    "domain": "myapp.com"
+  },
+  "techStack": {
+    "framework": "nextjs",
+    "backend": "supabase",
+    "database": "postgresql",
+    "language": "typescript",
+    "styling": "tailwind"
+  },
+  "features": [
+    {
+      "name": "Authentication",
+      "description": "User authentication with email/password and OAuth",
+      "priority": "critical",
+      "dependencies": [],
+      "estimatedTime": {
+        "days": 5,
+        "weeks": 1
+      }
+    },
+    {
+      "name": "User Management",
+      "description": "User profiles, settings, and account management",
+      "priority": "high",
+      "dependencies": ["authentication"],
+      "estimatedTime": {
+        "days": 7,
+        "weeks": 2
+      }
+    },
+    {
+      "name": "Team Management",
+      "description": "Create and manage teams, invite members",
+      "priority": "high",
+      "dependencies": ["user-management"],
+      "estimatedTime": {
+        "days": 10,
+        "weeks": 2
+      }
+    },
+    {
+      "name": "Project Management",
+      "description": "Create projects, tasks, and track progress",
+      "priority": "high",
+      "dependencies": ["team-management"],
+      "estimatedTime": {
+        "days": 14,
+        "weeks": 3
+      }
+    },
+    {
+      "name": "Payments",
+      "description": "Stripe integration for subscriptions and billing",
+      "priority": "high",
+      "dependencies": ["authentication"],
+      "estimatedTime": {
+        "days": 10,
+        "weeks": 2
+      }
+    },
+    {
+      "name": "Analytics Dashboard",
+      "description": "Analytics and reporting dashboard",
+      "priority": "medium",
+      "dependencies": ["project-management", "payments"],
+      "estimatedTime": {
+        "days": 12,
+        "weeks": 3
+      }
+    },
+    {
+      "name": "API",
+      "description": "RESTful API for third-party integrations",
+      "priority": "medium",
+      "dependencies": ["authentication"],
+      "estimatedTime": {
+        "days": 8,
+        "weeks": 2
+      }
+    },
+    {
+      "name": "Notifications",
+      "description": "Email and in-app notifications",
+      "priority": "medium",
+      "dependencies": ["user-management"],
+      "estimatedTime": {
+        "days": 6,
+        "weeks": 1
+      }
+    }
+  ],
+  "options": {
+    "multiTenant": true,
+    "includeAdmin": true,
+    "includeTests": true,
+    "includeDocs": true,
+    "codeGeneration": false
+  }
+}
+

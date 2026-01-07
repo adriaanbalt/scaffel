@@ -1,0 +1,25 @@
+{
+  "product": {
+    "name": "Simple Blog",
+    "description": "A simple blog platform",
+    "type": "saas"
+  },
+  "features": [
+    {
+      "name": "Authentication",
+      "priority": "critical",
+      "dependencies": []
+    },
+    {
+      "name": "Post Management",
+      "priority": "high",
+      "dependencies": ["authentication"]
+    },
+    {
+      "name": "Comments",
+      "priority": "medium",
+      "dependencies": ["post-management"]
+    }
+  ]
+}
+

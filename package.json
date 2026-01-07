@@ -1,0 +1,61 @@
+{
+  "name": "scaffel",
+  "version": "0.1.0",
+  "description": "Generate technical roadmaps and code foundations from product requirements",
+  "main": "dist/index.js",
+  "bin": {
+    "scaffel": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "roadmap",
+    "scaffold",
+    "generator",
+    "cli",
+    "development",
+    "planning",
+    "project-management",
+    "technical-roadmap",
+    "code-generation",
+    "project-scaffolding"
+  ],
+  "author": "Adriaan Balt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaffel/scaffel.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "commander": "^11.1.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "@types/handlebars": "^4.1.0",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
+  }
+}
+
