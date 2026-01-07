@@ -4,9 +4,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import type { ProductInput } from '../core/generator';
-import type { Feature } from '../core/generator';
-import type { TechStack } from './tech-stack-parser';
+import { ConfigurationError } from '../core/errors';
 
 export interface ScaffelConfig {
   product: {
@@ -24,6 +22,7 @@ export interface ScaffelConfig {
   };
   features?: Array<{
     name: string;
+    description?: string;
     priority?: string;
     dependencies?: string[];
     estimatedTime?: {
@@ -54,19 +53,30 @@ export class ConfigParser {
     return this.validate(config);
   }
 
-  validate(config: any): ScaffelConfig {
-    if (!config.product || !config.product.name) {
-      throw new Error('Config must have a product with a name');
+  validate(config: unknown): ScaffelConfig {
+    if (!config || typeof config !== 'object') {
+      throw new ConfigurationError('Config must be an object');
+    }
+    const configObj = config as Record<string, unknown>;
+    if (!configObj.product || typeof configObj.product !== 'object') {
+      throw new ConfigurationError('Config must have a product object');
+    }
+    const product = configObj.product as Record<string, unknown>;
+    if (!product.name || typeof product.name !== 'string') {
+      throw new ConfigurationError('Config must have a product with a name');
     }
 
     return config as ScaffelConfig;
   }
 
-  mergeWithCLI(config: ScaffelConfig, cliArgs: {
-    product?: string;
-    features?: string;
-    techStack?: string;
-  }): ScaffelConfig {
+  mergeWithCLI(
+    config: ScaffelConfig,
+    cliArgs: {
+      product?: string;
+      features?: string;
+      techStack?: string;
+    }
+  ): ScaffelConfig {
     const merged = { ...config };
 
     if (cliArgs.product) {
@@ -84,4 +94,3 @@ export class ConfigParser {
     return merged;
   }
 }
-

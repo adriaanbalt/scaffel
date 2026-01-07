@@ -17,9 +17,8 @@ export class PhaseOrganizer {
       return [];
     }
 
-    // Resolve dependencies to get execution order
-    const graph = this.resolver.resolve(features);
-    const executionOrder = graph.criticalPath;
+    // Resolve dependencies (graph available if needed for future enhancements)
+    // const graph = this.resolver.resolve(features);
 
     // Group features into phases based on dependencies and type
     const phases: Phase[] = [];
@@ -144,4 +143,3 @@ export class PhaseOrganizer {
     };
   }
 }
-

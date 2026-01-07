@@ -10,7 +10,7 @@
 
 This document provides a sequential implementation plan for {{product.name}}'s technical features.
 
-**Estimated Total Timeline:** {{timeline.total}} weeks
+**Estimated Total Timeline:** {{timeline.total}} weeks ({{timeline.days}} days)
 
 ---
 
@@ -22,15 +22,24 @@ This document provides a sequential implementation plan for {{product.name}}'s t
 
 {{#each features}}
 #### {{number}}. {{name}}
+{{#if description}}
+**Description:** {{description}}
+{{/if}}
+
 **Estimated Time:** {{estimatedTime.days}} days
 **Priority:** {{priority}}
+{{#if category}}
+**Category:** {{category}}
+{{/if}}
 
+{{#if dependencies.length}}
 **Dependencies:**
 {{#each dependencies}}
 - {{this}}
 {{/each}}
+{{/if}}
 
-**Checklist:** See [checklists/{{number}}-{{slug}}-checklist.md](./checklists/{{number}}-{{slug}}-checklist.md)
+**Checklist:** See [checklists/{{slug}}-checklist.md](./checklists/{{slug}}-checklist.md)
 
 ---
 

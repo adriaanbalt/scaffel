@@ -20,6 +20,8 @@ export interface Feature {
     days: number;
     weeks: number;
   };
+  category?: string;
+  checklistSections?: string[];
 }
 
 export interface Phase {
@@ -33,10 +35,22 @@ export interface Phase {
   };
 }
 
+export interface EnrichedFeature extends Feature {
+  description: string;
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  dependencies: string[];
+  estimatedTime: {
+    days: number;
+    weeks: number;
+  };
+  category: string;
+  checklistSections: string[];
+}
+
 export interface Roadmap {
   product: ProductInput;
   phases: Phase[];
-  dependencyGraph?: any;
+  dependencyGraph?: DependencyGraph;
   timeline?: {
     total: {
       days: number;
@@ -51,8 +65,10 @@ export interface Roadmap {
 }
 
 import { DependencyResolver } from './dependency-resolver';
+import type { DependencyGraph } from './dependency-resolver';
 import { PhaseOrganizer } from './phase-organizer';
 import { TimelineEstimator } from './timeline-estimator';
+import { ValidationError } from './errors';
 
 export class ScaffelGenerator {
   private resolver: DependencyResolver;
@@ -79,7 +95,7 @@ export class ScaffelGenerator {
     if (features.length > 0) {
       const depValidation = this.resolver.validateDependencies(features);
       if (!depValidation.valid) {
-        throw new Error(`Invalid dependencies: ${depValidation.errors.join(', ')}`);
+        throw new ValidationError('Invalid feature dependencies', depValidation.errors);
       }
     }
 
@@ -88,8 +104,9 @@ export class ScaffelGenerator {
 
     // Check for cycles
     if (dependencyGraph && dependencyGraph.cycles.length > 0) {
-      throw new Error(
-        `Circular dependencies detected: ${dependencyGraph.cycles.map((c) => c.join(' -> ')).join(', ')}`
+      throw new ValidationError(
+        'Circular dependencies detected',
+        dependencyGraph.cycles.map((c) => c.join(' -> '))
       );
     }
 
@@ -120,4 +137,3 @@ export class ScaffelGenerator {
     };
   }
 }
-

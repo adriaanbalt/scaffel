@@ -10,7 +10,7 @@ export interface Template {
   name: string;
   content: string;
   path: string;
-  compiled?: HandlebarsTemplateDelegate;
+  compiled?: Handlebars.TemplateDelegate;
 }
 
 export class TemplateManager {
@@ -18,7 +18,29 @@ export class TemplateManager {
   private templateDir: string;
 
   constructor(templateDir?: string) {
-    this.templateDir = templateDir || path.join(__dirname, '../../templates');
+    // Resolve template directory relative to package root
+    // When running from npm package, templates are in package root
+    // When running from source, templates are relative to project root
+    if (templateDir) {
+      this.templateDir = templateDir;
+    } else {
+      // Try to find templates relative to common locations
+      const possiblePaths = [
+        path.join(process.cwd(), 'templates'),
+        path.join(__dirname, '../../templates'),
+        path.join(process.cwd(), 'node_modules/scaffel/templates'),
+      ];
+
+      for (const possiblePath of possiblePaths) {
+        if (fs.existsSync(possiblePath)) {
+          this.templateDir = possiblePath;
+          return;
+        }
+      }
+
+      // Default fallback
+      this.templateDir = path.join(process.cwd(), 'templates');
+    }
   }
 
   loadTemplate(name: string): Template {
@@ -27,14 +49,14 @@ export class TemplateManager {
     }
 
     const templatePath = path.join(this.templateDir, name);
-    
+
     if (!fs.existsSync(templatePath)) {
       throw new Error(`Template not found: ${templatePath}`);
     }
 
     const content = fs.readFileSync(templatePath, 'utf-8');
     const compiled = Handlebars.compile(content);
-    
+
     const template: Template = {
       name,
       content,
@@ -46,7 +68,7 @@ export class TemplateManager {
     return template;
   }
 
-  renderTemplate(template: Template, variables: Record<string, any>): string {
+  renderTemplate(template: Template, variables: Record<string, unknown>): string {
     if (!template.compiled) {
       template.compiled = Handlebars.compile(template.content);
     }
@@ -59,13 +81,13 @@ export class TemplateManager {
 
   // Register Handlebars helpers
   registerHelpers(): void {
-    Handlebars.registerHelper('eq', (a: any, b: any) => a === b);
-    Handlebars.registerHelper('ne', (a: any, b: any) => a !== b);
+    Handlebars.registerHelper('eq', (a: unknown, b: unknown) => a === b);
+    Handlebars.registerHelper('ne', (a: unknown, b: unknown) => a !== b);
     Handlebars.registerHelper('gt', (a: number, b: number) => a > b);
     Handlebars.registerHelper('lt', (a: number, b: number) => a < b);
-    Handlebars.registerHelper('and', (a: any, b: any) => a && b);
-    Handlebars.registerHelper('or', (a: any, b: any) => a || b);
-    Handlebars.registerHelper('not', (a: any) => !a);
+    Handlebars.registerHelper('and', (a: unknown, b: unknown) => Boolean(a && b));
+    Handlebars.registerHelper('or', (a: unknown, b: unknown) => Boolean(a || b));
+    Handlebars.registerHelper('not', (a: unknown) => !a);
     Handlebars.registerHelper('formatDate', (date: Date) => {
       return date.toLocaleDateString('en-US', {
         month: 'long',
@@ -75,4 +97,3 @@ export class TemplateManager {
     });
   }
 }
-

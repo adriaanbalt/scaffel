@@ -1,0 +1,684 @@
+[
+  {
+    "name": "authentication",
+    "aliases": ["auth", "login", "signin", "sign-in", "user-auth"],
+    "description": "User authentication system with email/password authentication, OAuth providers (Google, GitHub, Apple), session management, password reset, email verification, and secure token handling.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Authentication Adapter Interface",
+      "Auth Provider Implementation",
+      "Session Management",
+      "OAuth Integration",
+      "Password Management",
+      "Email Verification",
+      "Security Hardening",
+      "Testing"
+    ]
+  },
+  {
+    "name": "user-management",
+    "aliases": ["users", "user-profiles", "user-accounts", "user-settings"],
+    "description": "User profile management, account settings, user preferences, profile editing, avatar upload, and user data management.",
+    "category": "core",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 7,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "User Schema Design",
+      "Profile Management API",
+      "Settings Management",
+      "Avatar Upload",
+      "User Preferences",
+      "Testing"
+    ]
+  },
+  {
+    "name": "payments",
+    "aliases": ["payment", "billing", "stripe", "checkout", "payment-processing"],
+    "description": "Payment processing system with Stripe integration, subscription management, billing cycles, invoice generation, payment methods, and transaction history.",
+    "category": "core",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 10,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Payment Provider Setup",
+      "Subscription Management",
+      "Billing System",
+      "Invoice Generation",
+      "Webhook Handling",
+      "Payment Security",
+      "Testing"
+    ]
+  },
+  {
+    "name": "database-schema",
+    "aliases": ["database", "schema", "db", "data-model"],
+    "description": "Core database schema design with tables, relationships, indexes, constraints, migrations, and data integrity rules.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Schema Design",
+      "Table Creation",
+      "Relationships",
+      "Indexes",
+      "Constraints",
+      "Migrations",
+      "Testing"
+    ]
+  },
+  {
+    "name": "api",
+    "aliases": ["rest-api", "api-endpoints", "backend-api"],
+    "description": "RESTful API with endpoints, request/response handling, authentication middleware, rate limiting, error handling, and API documentation.",
+    "category": "core",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "API Design",
+      "Endpoint Implementation",
+      "Authentication Middleware",
+      "Request Validation",
+      "Error Handling",
+      "Rate Limiting",
+      "API Documentation",
+      "Testing"
+    ]
+  },
+  {
+    "name": "dashboard",
+    "aliases": ["admin-dashboard", "analytics-dashboard", "user-dashboard"],
+    "description": "User dashboard with analytics, metrics, charts, data visualization, widgets, and customizable layouts.",
+    "category": "core",
+    "commonDependencies": ["authentication", "user-management"],
+    "estimatedTime": {
+      "days": 12,
+      "weeks": 3
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Dashboard Layout",
+      "Analytics Components",
+      "Data Visualization",
+      "Widget System",
+      "Real-time Updates",
+      "Testing"
+    ]
+  },
+  {
+    "name": "file-upload",
+    "aliases": ["file-storage", "upload", "file-handling", "media-upload"],
+    "description": "File upload and storage system with image processing, file validation, storage integration (S3, Cloudinary), and CDN support.",
+    "category": "advanced",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Storage Provider Setup",
+      "Upload Handler",
+      "File Validation",
+      "Image Processing",
+      "CDN Integration",
+      "Testing"
+    ]
+  },
+  {
+    "name": "notifications",
+    "aliases": ["notification", "alerts", "email-notifications", "push-notifications"],
+    "description": "Notification system with email notifications, in-app notifications, push notifications, notification preferences, and notification history.",
+    "category": "core",
+    "commonDependencies": ["authentication", "user-management"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Notification Service",
+      "Email Integration",
+      "In-App Notifications",
+      "Push Notifications",
+      "Notification Preferences",
+      "Testing"
+    ]
+  },
+  {
+    "name": "search",
+    "aliases": ["search-functionality", "full-text-search", "search-engine"],
+    "description": "Search functionality with full-text search, filtering, sorting, search suggestions, and search analytics.",
+    "category": "advanced",
+    "commonDependencies": ["database-schema"],
+    "estimatedTime": {
+      "days": 10,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Search Index Setup",
+      "Search API",
+      "Filtering & Sorting",
+      "Search Suggestions",
+      "Search Analytics",
+      "Testing"
+    ]
+  },
+  {
+    "name": "analytics",
+    "aliases": ["analytics-tracking", "metrics", "event-tracking"],
+    "description": "Analytics and event tracking system with user behavior tracking, conversion tracking, custom events, and analytics dashboard integration.",
+    "category": "advanced",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Analytics Service",
+      "Event Tracking",
+      "User Behavior Tracking",
+      "Conversion Tracking",
+      "Analytics Dashboard",
+      "Testing"
+    ]
+  },
+  {
+    "name": "error-handling",
+    "aliases": ["error-management", "exception-handling", "error-tracking"],
+    "description": "Comprehensive error handling system with error types, structured error responses, error logging, error monitoring, and user-friendly error messages.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 4,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Error Type Definitions",
+      "Error Response Format",
+      "Error Logging",
+      "Error Monitoring",
+      "User-Friendly Messages",
+      "Testing"
+    ]
+  },
+  {
+    "name": "logging",
+    "aliases": ["log-management", "structured-logging", "log-aggregation"],
+    "description": "Structured logging system with log levels, log aggregation, log rotation, log search, and integration with monitoring tools.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Logging Framework Setup",
+      "Log Levels Configuration",
+      "Structured Logging Format",
+      "Log Aggregation",
+      "Log Rotation",
+      "Testing"
+    ]
+  },
+  {
+    "name": "environment-config",
+    "aliases": ["env-config", "configuration-management", "secrets-management"],
+    "description": "Environment configuration and secrets management system with environment variables, configuration files, secret storage, and configuration validation.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 3,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Environment Variable Setup",
+      "Configuration File Structure",
+      "Secrets Management",
+      "Configuration Validation",
+      "Testing"
+    ]
+  },
+  {
+    "name": "testing-setup",
+    "aliases": ["test-framework", "test-infrastructure", "testing-tools"],
+    "description": "Testing infrastructure with unit tests, integration tests, test fixtures, mocking, test coverage, and CI/CD integration.",
+    "category": "foundation",
+    "commonDependencies": [],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Test Framework Setup",
+      "Test Structure",
+      "Fixtures and Mocks",
+      "Test Coverage",
+      "CI/CD Integration",
+      "Testing"
+    ]
+  },
+  {
+    "name": "authorization",
+    "aliases": ["rbac", "permissions", "access-control", "role-based-access"],
+    "description": "Role-based access control (RBAC) system with permissions, roles, policy enforcement, resource-level authorization, and audit trails.",
+    "category": "core",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Role and Permission Schema",
+      "Permission System",
+      "Policy Enforcement",
+      "Resource-Level Authorization",
+      "Audit Trails",
+      "Testing"
+    ]
+  },
+  {
+    "name": "email-system",
+    "aliases": ["email-service", "transactional-email", "email-delivery"],
+    "description": "Transactional email system with email templates, email delivery, email tracking, bounce handling, and email analytics.",
+    "category": "core",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Email Provider Setup",
+      "Email Template System",
+      "Email Delivery",
+      "Email Tracking",
+      "Bounce Handling",
+      "Testing"
+    ]
+  },
+  {
+    "name": "caching",
+    "aliases": ["cache", "redis", "cache-management", "cache-invalidation"],
+    "description": "Caching system with Redis integration, cache invalidation strategies, TTL management, cache warming, and cache monitoring.",
+    "category": "core",
+    "commonDependencies": ["database-schema"],
+    "estimatedTime": {
+      "days": 7,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Cache Provider Setup",
+      "Cache Strategy",
+      "Cache Invalidation",
+      "TTL Management",
+      "Cache Monitoring",
+      "Testing"
+    ]
+  },
+  {
+    "name": "rate-limiting",
+    "aliases": ["rate-limit", "throttling", "api-throttling"],
+    "description": "API rate limiting and throttling system with per-user limits, per-endpoint limits, rate limit headers, and rate limit monitoring.",
+    "category": "core",
+    "commonDependencies": ["api", "caching"],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Rate Limit Strategy",
+      "Rate Limit Middleware",
+      "Rate Limit Headers",
+      "Rate Limit Monitoring",
+      "Testing"
+    ]
+  },
+  {
+    "name": "audit-logging",
+    "aliases": ["audit-trail", "activity-log", "compliance-logging"],
+    "description": "Audit logging system with activity tracking, compliance logging, audit trail queries, and audit log retention policies.",
+    "category": "core",
+    "commonDependencies": ["authentication", "database-schema"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Audit Log Schema",
+      "Activity Tracking",
+      "Compliance Logging",
+      "Audit Trail Queries",
+      "Retention Policies",
+      "Testing"
+    ]
+  },
+  {
+    "name": "real-time",
+    "aliases": ["websockets", "sse", "live-updates", "real-time-updates"],
+    "description": "Real-time communication system with WebSockets, Server-Sent Events (SSE), live updates, presence detection, and real-time notifications.",
+    "category": "advanced",
+    "commonDependencies": ["authentication", "api"],
+    "estimatedTime": {
+      "days": 10,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "WebSocket Server Setup",
+      "Connection Management",
+      "Message Broadcasting",
+      "Presence Detection",
+      "Real-time Notifications",
+      "Testing"
+    ]
+  },
+  {
+    "name": "background-jobs",
+    "aliases": ["job-queue", "workers", "task-queue", "async-jobs"],
+    "description": "Background job processing system with job queues, workers, job scheduling, job retries, job monitoring, and job prioritization.",
+    "category": "advanced",
+    "commonDependencies": ["database-schema", "logging"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Job Queue Setup",
+      "Worker Implementation",
+      "Job Scheduling",
+      "Job Retries",
+      "Job Monitoring",
+      "Testing"
+    ]
+  },
+  {
+    "name": "webhooks",
+    "aliases": ["webhook-delivery", "webhook-management", "event-webhooks"],
+    "description": "Webhook system with webhook delivery, retry logic, webhook security (signatures), webhook management, and webhook monitoring.",
+    "category": "advanced",
+    "commonDependencies": ["api", "authentication"],
+    "estimatedTime": {
+      "days": 7,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Webhook Schema",
+      "Webhook Delivery",
+      "Retry Logic",
+      "Webhook Security",
+      "Webhook Management",
+      "Testing"
+    ]
+  },
+  {
+    "name": "api-documentation",
+    "aliases": ["openapi", "swagger", "api-docs", "api-spec"],
+    "description": "API documentation system with OpenAPI/Swagger specification, interactive API docs, API versioning, and API changelog.",
+    "category": "advanced",
+    "commonDependencies": ["api"],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "OpenAPI Specification",
+      "Interactive API Docs",
+      "API Versioning",
+      "API Changelog",
+      "Testing"
+    ]
+  },
+  {
+    "name": "multi-tenancy",
+    "aliases": ["multi-tenant", "tenant-isolation", "tenant-scoping"],
+    "description": "Multi-tenancy system with tenant isolation, data scoping, tenant configuration, tenant management, and tenant-specific features.",
+    "category": "advanced",
+    "commonDependencies": ["database-schema", "authentication"],
+    "estimatedTime": {
+      "days": 12,
+      "weeks": 3
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Tenant Schema Design",
+      "Data Isolation",
+      "Tenant Configuration",
+      "Tenant Management",
+      "Tenant-Specific Features",
+      "Testing"
+    ]
+  },
+  {
+    "name": "internationalization",
+    "aliases": ["i18n", "localization", "translations", "multi-language"],
+    "description": "Internationalization system with translation management, locale detection, date/time formatting, number formatting, and RTL support.",
+    "category": "advanced",
+    "commonDependencies": ["api"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Translation System",
+      "Locale Detection",
+      "Date/Time Formatting",
+      "Number Formatting",
+      "RTL Support",
+      "Testing"
+    ]
+  },
+  {
+    "name": "oauth-integration",
+    "aliases": ["oauth", "oauth-providers", "oauth-tokens", "third-party-auth"],
+    "description": "OAuth integration system with OAuth provider support, token management, refresh tokens, OAuth flow handling, and provider-specific configurations.",
+    "category": "integration",
+    "commonDependencies": ["authentication"],
+    "estimatedTime": {
+      "days": 7,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "OAuth Provider Setup",
+      "OAuth Flow Implementation",
+      "Token Management",
+      "Refresh Token Handling",
+      "Provider Configuration",
+      "Testing"
+    ]
+  },
+  {
+    "name": "third-party-apis",
+    "aliases": ["external-apis", "api-integration", "third-party-integration"],
+    "description": "Third-party API integration system with API client management, rate limiting, error handling, retry logic, and API monitoring.",
+    "category": "integration",
+    "commonDependencies": ["api", "error-handling"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "API Client Setup",
+      "Rate Limiting",
+      "Error Handling",
+      "Retry Logic",
+      "API Monitoring",
+      "Testing"
+    ]
+  },
+  {
+    "name": "payment-gateway",
+    "aliases": ["stripe-integration", "paypal-integration", "payment-processor"],
+    "description": "Payment gateway integration with Stripe, PayPal, or other processors, payment method management, payment processing, and payment webhooks.",
+    "category": "integration",
+    "commonDependencies": ["payments", "api"],
+    "estimatedTime": {
+      "days": 8,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Payment Gateway Setup",
+      "Payment Method Management",
+      "Payment Processing",
+      "Payment Webhooks",
+      "Payment Security",
+      "Testing"
+    ]
+  },
+  {
+    "name": "social-login",
+    "aliases": ["social-auth", "google-login", "github-login", "apple-login"],
+    "description": "Social login integration with Google, GitHub, Apple, and other providers, social account linking, and social profile data management.",
+    "category": "integration",
+    "commonDependencies": ["authentication", "oauth-integration"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Social Provider Setup",
+      "Social Login Flow",
+      "Account Linking",
+      "Profile Data Management",
+      "Testing"
+    ]
+  },
+  {
+    "name": "sso",
+    "aliases": ["single-sign-on", "saml", "enterprise-auth", "sso-integration"],
+    "description": "Single Sign-On (SSO) system with SAML support, enterprise authentication, SSO providers, and SSO session management.",
+    "category": "integration",
+    "commonDependencies": ["authentication", "oauth-integration"],
+    "estimatedTime": {
+      "days": 10,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "SSO Provider Setup",
+      "SAML Implementation",
+      "SSO Flow",
+      "Session Management",
+      "Enterprise Integration",
+      "Testing"
+    ]
+  },
+  {
+    "name": "performance-monitoring",
+    "aliases": ["apm", "performance-tracking", "performance-analytics"],
+    "description": "Application Performance Monitoring (APM) system with performance tracking, slow query detection, performance dashboards, and performance alerts.",
+    "category": "optimization",
+    "commonDependencies": ["api", "logging"],
+    "estimatedTime": {
+      "days": 7,
+      "weeks": 2
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "APM Tool Setup",
+      "Performance Tracking",
+      "Slow Query Detection",
+      "Performance Dashboards",
+      "Performance Alerts",
+      "Testing"
+    ]
+  },
+  {
+    "name": "error-tracking",
+    "aliases": ["sentry", "error-monitoring", "exception-tracking"],
+    "description": "Error tracking system with error aggregation, error notifications, error grouping, error context, and error resolution tracking.",
+    "category": "optimization",
+    "commonDependencies": ["error-handling", "logging"],
+    "estimatedTime": {
+      "days": 5,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Error Tracking Tool Setup",
+      "Error Aggregation",
+      "Error Notifications",
+      "Error Grouping",
+      "Error Resolution Tracking",
+      "Testing"
+    ]
+  },
+  {
+    "name": "cdn-setup",
+    "aliases": ["cdn", "content-delivery-network", "asset-optimization"],
+    "description": "CDN setup and configuration with asset optimization, CDN caching, CDN invalidation, and CDN monitoring.",
+    "category": "optimization",
+    "commonDependencies": ["file-upload"],
+    "estimatedTime": {
+      "days": 4,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "CDN Provider Setup",
+      "Asset Optimization",
+      "CDN Caching",
+      "CDN Invalidation",
+      "CDN Monitoring",
+      "Testing"
+    ]
+  },
+  {
+    "name": "database-optimization",
+    "aliases": ["query-optimization", "database-tuning", "index-optimization"],
+    "description": "Database optimization system with query optimization, index optimization, query performance monitoring, and database tuning.",
+    "category": "optimization",
+    "commonDependencies": ["database-schema", "performance-monitoring"],
+    "estimatedTime": {
+      "days": 6,
+      "weeks": 1
+    },
+    "checklistSections": [
+      "Prerequisites",
+      "Query Analysis",
+      "Index Optimization",
+      "Query Performance Monitoring",
+      "Database Tuning",
+      "Testing"
+    ]
+  }
+]
+
